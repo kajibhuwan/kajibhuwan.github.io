@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<htmle lang= "en">
+<head>
+    <meta charset="UTF-8">
+    <title> My Portfolio</title>
+    <style>
+        .main{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+
+<img id="profileImage"
+height=100
+width=100
+>
+<h2 id="fullName"></h2>
+<p id= "bio"></p>
+<h3 id="followersInformation"></h3>
+<p>
+    Check me on  <a id="githubLink" >Github</a>
+</p>
+</div>
+<script>
+    fetch("https://api.github.com/users/kajibhuwan")
+    .then(response => response.json())
+    .then(function(data) {
+        console.log(data)
+
+        let followersCount = data['followers']
+        let followersInfo = 'I have been followed by 5 awesome People on Github.'
+
+        document.getElementById('profileImage').src= data['avatar_url']
+        document.getElementById('fullName').textContent= data['name']
+        document.getElementById('bio').textContent= data['bio']
+        document.getElementById('followersInformation').textContent= followersInfo
+        document.getElementById('githubLink').href= data['html_url']
+
+
+    })
+
+
+</script>
+
+</body>
+</htmle>
